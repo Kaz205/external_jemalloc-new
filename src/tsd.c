@@ -13,11 +13,11 @@ static unsigned ncleanups;
 static malloc_tsd_cleanup_t cleanups[MALLOC_TSD_CLEANUPS_MAX];
 
 #ifdef JEMALLOC_MALLOC_THREAD_CLEANUP
-__thread tsd_t JEMALLOC_TLS_MODEL tsd_tls = TSD_INITIALIZER;
-__thread bool JEMALLOC_TLS_MODEL tsd_initialized = false;
+JEMALLOC_TSD_TYPE_ATTR(tsd_t) tsd_tls = TSD_INITIALIZER;
+JEMALLOC_TSD_TYPE_ATTR(bool) JEMALLOC_TLS_MODEL tsd_initialized = false;
 bool tsd_booted = false;
 #elif (defined(JEMALLOC_TLS))
-__thread tsd_t JEMALLOC_TLS_MODEL tsd_tls = TSD_INITIALIZER;
+JEMALLOC_TSD_TYPE_ATTR(tsd_t) tsd_tls = TSD_INITIALIZER;
 pthread_key_t tsd_tsd;
 bool tsd_booted = false;
 #elif (defined(_WIN32))
